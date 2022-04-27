@@ -10,4 +10,5 @@ git remote add origin git@github.com:pillpushers/GameProject.git
 git push -u origin main  
 
 ✨提交记录  
-2022/4/22 第一次提交：创建游戏前景、背景和主角，添加了跳跃控制。
+2022/4/22 第一次提交：创建游戏前景、背景和主角，添加了跳跃控制。  
+2022/4/27 第二次提交：增加镜头控制Cinemachine。
