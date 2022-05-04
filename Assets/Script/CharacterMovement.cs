@@ -9,6 +9,7 @@ public class CharacterMovement : MonoBehaviour
     public float jumpHigh;//跳跃高度
     public float fallMutiplier;//下落加速度
     public float lowMutiplier;//上升时的加速度
+    public float FaceDirection;  //面部朝向
     // Start is called before the first frame update
     void Start()
     {
@@ -24,7 +25,7 @@ public class CharacterMovement : MonoBehaviour
     
     void Movement(){
         float HorizontalMove; //水平移动
-        float FaceDirection;  //面部朝向
+        
         HorizontalMove = Input.GetAxis("Horizontal"); //获取水平输入
         FaceDirection = Input.GetAxisRaw("Horizontal");//获取角色朝向
         
