@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1176116936}
   - component: {fileID: -4002686193051068781}
   - component: {fileID: 1648612444}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: part_rocket
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -148,4 +148,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   explosion: {fileID: 8213161546025451976, guid: f4fbb77d2c28b0c4995bbe22608fb4a3,
     type: 3}
-  rocketLifeTime: 0.5
+  rocketLifeTime: 2
