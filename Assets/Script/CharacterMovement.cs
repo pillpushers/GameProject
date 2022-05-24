@@ -16,6 +16,7 @@ public class CharacterMovement : MonoBehaviour
     public Animator anim;
     public Collider2D coll;
     public LayerMask ground;
+    private bool isHurt = false ;
 
     // Start is called before the first frame update
 
@@ -67,6 +68,7 @@ public class CharacterMovement : MonoBehaviour
     //better jump
     void BetterJump(){
     //jump
+     if(Mathf.Abs(rb.velocity.y) < 2){
     if(Input.GetButtonDown("Jump")){
         //随机进行音频片段的播放
         int i = Random.Range(0,jumpClips.Length);
@@ -75,6 +77,7 @@ public class CharacterMovement : MonoBehaviour
         rb.velocity = new Vector2(rb.velocity.x, jumpHigh );
         anim.SetBool("jumping", true);
     }
+     }
     //better
     if(rb.velocity.y < 0){ 
         rb.velocity += Vector2.up * Physics2D.gravity.y * (fallMutiplier - 1) * Time.deltaTime;
@@ -83,7 +86,7 @@ public class CharacterMovement : MonoBehaviour
         rb.velocity += Vector2.up * Physics2D.gravity.y * (lowMutiplier - 1) * Time.deltaTime;
     }
     }   
-   void SwithAnim(){
+    void SwithAnim(){
         anim.SetBool("idling", false);
         if(anim.GetBool("jumping")){
             if(rb.velocity.y < 0){
@@ -91,11 +94,43 @@ public class CharacterMovement : MonoBehaviour
             anim.SetBool("falling", true);
             }
         }
+        else if(isHurt){
+            anim.SetBool("hurting", true);
+            anim.SetFloat("running", 0);
+            if(Mathf.Abs(rb.velocity.x) < 0.1f){
+                isHurt = false;
+                anim.SetBool("hurting", false);
+                anim.SetBool("idling", true);
+            }
+        }
         else if(coll.IsTouchingLayers(ground)){
+            
             anim.SetBool("falling", false);
             anim.SetBool("idling", true);
         }
+        
     
+    }
+
+       private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.gameObject.tag == "Enemy" ){
+            if(anim.GetBool("falling")){
+                Destroy(collision.gameObject);
+                rb.velocity = new Vector2(rb.velocity.x, jumpHigh );
+                anim.SetBool("jumping", true);
+            }
+            
+            else if(transform.position.x < collision.gameObject.transform.position.x){
+                rb.velocity = new Vector2(-10,rb.velocity.y);
+                isHurt = true;
+            }
+            else if(transform.position.x > collision.gameObject.transform.position.x){
+                rb.velocity = new Vector2(10,rb.velocity.y);
+                isHurt = true;
+            }
+            
+        }
     }
 }
 
