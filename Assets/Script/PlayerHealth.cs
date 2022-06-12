@@ -28,7 +28,7 @@ public class PlayerHealth : MonoBehaviour
             
                 if (currentHealth > 0f)
                 {
-                    TakeDamage(20);
+                    ChangeHealth(-20);
                 }
                 if (currentHealth <= 0){
                     Debug.Log(currentHealth);
@@ -37,10 +37,11 @@ public class PlayerHealth : MonoBehaviour
                 }
         }
     }
-    void TakeDamage(int damage){
-
-        currentHealth -= damage;
+    public void ChangeHealth(int value){
+        
+        currentHealth += value;
         healthBar.SetHealth(currentHealth);
+        currentHealth = (int)Mathf.Clamp(currentHealth, 0f, 100f);
         
         // if(currentHealth <= 0){
         //     GetComponent<CharcaterMove>().enabled = false;

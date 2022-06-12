@@ -6,6 +6,9 @@ TagManager:
   tags:
   - Enemy
   - Wall
+  - Weapon
+  - ground
+  - HealthBar
   layers:
   - Default
   - TransparentFX
@@ -13,14 +16,14 @@ TagManager:
   - 
   - Water
   - UI
-  - 
+  - Enemy
   - 
   - Ground
   - CameraCollsion
   - Player
   - Rocket
-  - 
-  - 
+  - Pickups
+  - Bombs
   - 
   - 
   - 
